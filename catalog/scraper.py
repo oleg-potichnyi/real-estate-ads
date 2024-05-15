@@ -1,3 +1,10 @@
+import os
+import django
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app.settings")
+
+django.setup()
+
 import datetime
 import requests
 import json
@@ -59,19 +66,27 @@ def generate_json(real_estate_listings: list[Scraper]) -> None:
     # Convert Scraper instances to JSON format
     json_data = []
     for listing in real_estate_listings:
-        json_data.append({
-            "url": listing.url,
-            "ad_title": listing.ad_title,
-            "region": listing.region,
-            "address": listing.address,
-            "description": listing.description,
-            "image_urls": listing.image_urls,
-            "publish_date": listing.publish_date,
-            "price": listing.price,
-            "quantity_rooms": listing.quantity_rooms,
-            "area": listing.area
-        })
+        json_data.append(
+            {
+                "url": listing.url,
+                "ad_title": listing.ad_title,
+                "region": listing.region,
+                "address": listing.address,
+                "description": listing.description,
+                "image_urls": listing.image_urls,
+                "publish_date": listing.publish_date,
+                "price": listing.price,
+                "quantity_rooms": listing.quantity_rooms,
+                "area": listing.area,
+            }
+        )
 
     # Save JSON data to a file
     with open("real_estate_listings.json", "w") as json_file:
         json.dump(json_data, json_file, indent=4)
+
+
+if __name__ == "__main__":
+    listings = scrape_real_estate()
+    if listings:
+        generate_json(listings)
