@@ -13,8 +13,11 @@ def scrape_real_estate() -> list[Scraper]:
         # Parse JSON response
         real_estate_data = response.json()
         real_estate_listings = []
-
+        # Limit the number of ads to 60
+        count = 0
         for listing in real_estate_data:
+            if count >= 60:
+                break
             # Extract required information
             url = listing.get("url")
             ad_title = listing.get("ad_title")
@@ -44,6 +47,7 @@ def scrape_real_estate() -> list[Scraper]:
                         datetime_found=datetime.datetime.now(),
                     )
                 )
+                count += 1
 
         return real_estate_listings
     else:
