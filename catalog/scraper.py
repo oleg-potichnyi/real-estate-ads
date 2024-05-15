@@ -1,19 +1,19 @@
 import os
 import django
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app.settings")
-
-django.setup()
-
 import datetime
 import requests
 import json
+import time
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app.settings")
+django.setup()
 
 from app.settings import REAL_ESTATE_URL
 from catalog.models import Scraper
 
 
 def scrape_real_estate() -> list[Scraper]:
+    time.sleep(1)
     # Fetch data from realtylink.org
     response = requests.get(REAL_ESTATE_URL)
     if response.status_code == 200:

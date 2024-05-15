@@ -126,4 +126,4 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-REAL_ESTATE_URL = "https://realtylink.org/en/properties~for-rent?uc=2"
+REAL_ESTATE_URL = "https://realtylink.org/en/properties~for-rent/"
