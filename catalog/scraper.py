@@ -4,12 +4,11 @@ import datetime
 import requests
 import json
 import time
+from app.settings import REAL_ESTATE_URL
+from catalog.models import Scraper
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app.settings")
 django.setup()
-
-from app.settings import REAL_ESTATE_URL
-from catalog.models import Scraper
 
 
 def scrape_real_estate() -> list[Scraper]:
