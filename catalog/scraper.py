@@ -4,6 +4,7 @@ import datetime
 import requests
 import json
 import time
+
 from app.settings import REAL_ESTATE_URL
 from catalog.models import Scraper
 
